@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
+
 @RestController
 @RequestMapping("/sum-primes")
 public class PrimeNumbersController {
@@ -14,12 +16,12 @@ public class PrimeNumbersController {
 	private PrimeNumbersService service;
 
 	@GetMapping("/till/{till}")
-	public int getSumTill(@PathVariable("till") int till) {
+	public BigInteger getSumTill(@PathVariable("till") int till) {
 		return service.sumPrimes(1, till);
 	}
 
 	@GetMapping("/from/{from}/till/{till}")
-	public int getSumFromTill(@PathVariable("from") int from, @PathVariable("till") int till) {
+	public BigInteger getSumFromTill(@PathVariable("from") int from, @PathVariable("till") int till) {
 		return service.sumPrimes(from, till);
 	}
 }

@@ -8,7 +8,7 @@ class PrimeNumbersServiceTest {
 
   @Test
   void sumPrimes() {
-    assertEquals(1060, new PrimeNumbersService().sumPrimes(1, 100));
+    assertEquals(1060, new PrimeNumbersService().sumPrimes(1, 100).longValue());
   }
 
   @Test
