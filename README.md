@@ -11,3 +11,10 @@ sum prime numbers
 7. extend the solution to support the requirement of ten million limit
   1. evaluate performance, optimize algorithm, current result 4s for 1-1m, 5min for 1-10m
   2. make a code to generate and load a pre-calculated table
+  3. generate it
+
+I stop the development here. It took about 3.5 hours and looks good to me.
+
+Tomorrow morning I'm going to make two-three more commits not related to service.
+
+Would like to add assertions, javadocs and comments.

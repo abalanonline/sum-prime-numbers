@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class PrimeNumbersService {
 
   private static final Logger log = org.slf4j.LoggerFactory.getLogger(PrimeNumbersService.class);
-  public static final int MAX_TILL = 1_000_000;
+  public static final int MAX_TILL = 10_000_000;
   public static final String PRIMES_RESOURCE = "/primes.txt";
 
   private final int[] primes;
