@@ -15,10 +15,6 @@ sum prime numbers
 
 I stop the development here. It took about 3.5 hours and looks good to me.
 
-Tomorrow morning I'm going to make two-three more commits not related to service.
-
-Would like to add assertions, javadocs and comments.
-
 ### how to run
 
 ```bash
