@@ -10,3 +10,4 @@ sum prime numbers
 6. add one more REST endpoint
 7. extend the solution to support the requirement of ten million limit
   1. evaluate performance, optimize algorithm, current result 4s for 1-1m, 5min for 1-10m
+  2. make a code to generate and load a pre-calculated table
