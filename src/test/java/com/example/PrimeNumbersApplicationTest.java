@@ -22,7 +22,7 @@ class PrimeNumbersApplicationTest {
   @Test
   public void testSimpleApi() throws Exception {
     // I googled "sum of prime numbers from 1 to 100" and it replied 1060, will use it as a test
-    this.mockMvc.perform(get("/sum-primes/till/1000"))
+    this.mockMvc.perform(get("/sum-primes/till/100"))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().string("1060"));
