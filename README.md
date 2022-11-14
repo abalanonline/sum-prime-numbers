@@ -6,3 +6,4 @@ sum prime numbers
 2. copy spring boot REST prototype app https://github.com/spring-guides/gs-rest-service
 3. create one REST endpoint and test for it
 4. make a service class responsible for performing calculations
+5. implement the prime numbers finding algorithm
