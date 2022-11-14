@@ -37,7 +37,19 @@ public class PrimeNumbersService {
     }
   }
 
-  public BigInteger sumPrimes(int from, int till) {
+  /**
+   * Calculate a sum of prime numbers in a range.
+   * @param from the beginning number, inclusive
+   * @param till the ending number, exclusive
+   * @return sum of prime numbers
+   * @throws IllegalArgumentException if the arguments are out of the 0-10_000_000 range or in wrong order
+   */
+  public BigInteger sumPrimes(int from, int till) throws IllegalArgumentException {
+    if (from < 0) throw new IllegalArgumentException(String.format("Starting number %d is less than zero", from));
+    if (till > MAX_TILL) throw new IllegalArgumentException(
+        String.format("Ending number %d is greater than maximum allowed %d", from, MAX_TILL));
+    if (from > till) throw new IllegalArgumentException(
+        String.format("Starting number %d is greater than ending number %d", from, till));
     BigInteger result = BigInteger.ZERO;
     for (int prime : primes) {
       if (prime >= till) break;
@@ -53,9 +65,7 @@ public class PrimeNumbersService {
     nLoop:
     for (int n = 3; n < till; n += 2) {
       for (int i = 0; i < primesLength; i++) {
-        if (n % primes[i] == 0) {
-          continue nLoop;
-        }
+        if (n % primes[i] == 0) continue nLoop;
       }
       primes[primesLength++] = n;
     }
