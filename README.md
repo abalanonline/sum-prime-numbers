@@ -7,3 +7,4 @@ sum prime numbers
 3. create one REST endpoint and test for it
 4. make a service class responsible for performing calculations
 5. implement the prime numbers finding algorithm
+6. add one more REST endpoint

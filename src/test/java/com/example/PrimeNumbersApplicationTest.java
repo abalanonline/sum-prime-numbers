@@ -28,4 +28,12 @@ class PrimeNumbersApplicationTest {
         .andExpect(content().string("1060"));
   }
 
+  @Test
+  public void testApiFromTill() throws Exception {
+    this.mockMvc.perform(get("/sum-primes/from/1/till/100"))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(content().string("1060"));
+  }
+
 }
