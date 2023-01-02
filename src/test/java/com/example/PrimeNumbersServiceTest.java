@@ -1,14 +1,8 @@
 package com.example;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 class PrimeNumbersServiceTest {
 
@@ -32,16 +26,11 @@ class PrimeNumbersServiceTest {
     int[] primeNumbersFromOneToHundred =
         {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
     assertArrayEquals(primeNumbersFromOneToHundred, PrimeNumbersService.getPrimes(100));
+
+    assertArrayEquals(new int[0], PrimeNumbersService.getPrimes(0));
+    assertArrayEquals(new int[0], PrimeNumbersService.getPrimes(1));
+    assertArrayEquals(new int[0], PrimeNumbersService.getPrimes(2));
+    assertArrayEquals(new int[]{2}, PrimeNumbersService.getPrimes(3));
   }
 
-  @Disabled
-  @Test
-  void generatePreCalculatedPrimes() throws IOException {
-    // will put the code in disabled test so it will not be included in production jar
-    int[] primes = PrimeNumbersService.getPrimes(PrimeNumbersService.MAX_TILL);
-    try (PrintWriter printWriter = new PrintWriter(
-        Files.newOutputStream(Paths.get("src/main/resources", PrimeNumbersService.PRIMES_RESOURCE)))) {
-      Arrays.stream(primes).forEach(printWriter::println);
-    }
-  }
 }

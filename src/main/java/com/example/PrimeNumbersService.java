@@ -3,38 +3,19 @@ package com.example;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.stream.IntStream;
 
 @Service
 public class PrimeNumbersService {
 
   private static final Logger log = org.slf4j.LoggerFactory.getLogger(PrimeNumbersService.class);
   public static final int MAX_TILL = 10_000_000;
-  public static final String PRIMES_RESOURCE = "/primes.txt";
 
   private final int[] primes;
 
   public PrimeNumbersService() {
-    InputStream inputStream = getClass().getResourceAsStream(PRIMES_RESOURCE);
-    if (inputStream == null) {
-      // do not fail, calculate primes
-      log.warn("Calculating primes, please wait 5 min");
-      this.primes = getPrimes(MAX_TILL);
-      log.warn("Calculation complete, starting service");
-    } else {
-      // happy path, just load the table
-      Scanner scanner = new Scanner(inputStream);
-      List<Integer> primes = new ArrayList<>();
-      while (scanner.hasNextInt()) {
-        primes.add(scanner.nextInt());
-      }
-      this.primes = primes.stream().mapToInt(i -> i).toArray();
-    }
+    this.primes = getPrimes(MAX_TILL); // <100 ms for 10^7
   }
 
   /**
@@ -58,18 +39,18 @@ public class PrimeNumbersService {
     return result;
   }
 
-  protected static int[] getPrimes(int till) {
-    int[] primes = new int[1_000_000];
-    primes[0] = 2;
-    int primesLength = 1;
-    nLoop:
-    for (int n = 3; n < till; n += 2) {
-      for (int i = 0; i < primesLength; i++) {
-        if (n % primes[i] == 0) continue nLoop;
+  protected static int[] getPrimes(int n) {
+    boolean[] notPrime = new boolean[n];
+    if (n > 0) notPrime[0] = true;
+    if (n > 1) notPrime[1] = true;
+    for(int i = 2; i * i < n; i++) {
+      if (!notPrime[i]) {
+        for(int j = i * i; j < n; j += i){
+          notPrime[j] = true;
+        }
       }
-      primes[primesLength++] = n;
     }
-    return Arrays.copyOf(primes, primesLength);
+    return IntStream.range(2, n).filter(i -> !notPrime[i]).toArray();
   }
 
 }
